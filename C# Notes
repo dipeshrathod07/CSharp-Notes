@@ -1,0 +1,91 @@
+1. The Core Architecture: Managed Code
+In an interview, a common "warm-up" question is: "What is the difference between Managed and Unmanaged code?"
+C# is a Managed Language. This means you don't talk directly to the hardware. Instead, your code runs inside a "sandbox" called the Common Language Runtime (CLR).
+The Compilation Process
+When you hit "Build" in Visual Studio, your C# doesn't immediately become machine code (0s and 1s). It goes through two steps:
+C# Source Code ---> Compiled into Intermediate Language (IL).
+IL Code ---> The Just-In-Time (JIT) Compiler turns it into Machine Code right when the app runs.
+
+2. DataTypes in C# 
+- In C#, data types are primarily divided into two main categories: Value Types and Reference Types, with a third category for Pointer Types used in specific scenarios. C# is a strongly-typed language, meaning every variable must be declared with a specific data type. 
+
+2.1 Value Types
+Value types store the actual data directly in memory (typically on the stack). When you assign a value type variable to another, a copy of the value is created. All built-in numeric types are value types and derive from System.ValueType, which in turn derives from System.Object
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                 STACK MEMORY
+        (Stores Value Types Directly)
+
+        ┌───────────────────────────┐
+        │ int number = 10;          │
+        │ ┌───────────────┐         │
+        │ │ number : 10   │         │
+        │ └───────────────┘         │
+        │                           │
+        │ bool isActive = true;     │
+        │ ┌───────────────┐         │
+        │ │ isActive:true │         │
+        │ └───────────────┘         │
+        │                           │
+        │ char grade = 'A';         │
+        │ ┌───────────────┐         │
+        │ │ grade : 'A'   │         │
+        │ └───────────────┘         │
+        │                           │
+        │ double price = 99.5;      │
+        │ ┌───────────────┐         │
+        │ │ price : 99.5  │         │
+        │ └───────────────┘         │
+        └───────────────────────────┘
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                 Value Type Data Types
+                            │
+        ┌───────────────────┼───────────────────┐
+        │                   │                   │
+     Numeric             Character           Boolean
+        │                   │                   │
+  ┌─────┼─────┐             │                   │
+  │     │     │             char               bool
+Integer Float Decimal
+  │       │
+byte     float
+short    double
+int
+long 
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+.Integral Types for whole numbers:
+int: The most common integer type, a signed 32-bit integer.
+byte and sbyte: For small 8-bit integers (unsigned and signed, respectively).
+short, ushort, long, ulong: For 16-bit and 64-bit integers (signed and unsigned).
+
+.Floating-Point Types for numbers with decimal points:
+float: A single-precision, 32-bit floating-point type (requires an 'f' suffix, e.g., 3.5f).
+double: A double-precision, 64-bit floating-point type, which is the default for floating-point literals.
+decimal: A 128-bit data type suitable for financial and monetary calculations due to its high precision (requires an 'm' suffix, e.g., 100.75m).
+
+Other Value Types:
+bool: Stores a Boolean value, either true or false.
+char: Stores a single 16-bit Unicode character (e.g., 'A').
+enum and struct: User-defined value types
+
+Escape sequnce
+
+In C#, escape sequences are backslash-prefixed characters (e.g., \n, \t, \\) used to insert special, non-printable, or restricted characters into string literals. They enable formatting and handling characters like quotes or backslashes. Verbatim strings (prefixed with @) ignore escape sequences, allowing literal backslashes and multiline strings, such as @"C:\path\file.txt". 
+YouTube
+YouTube
+ +4
+Common C# Escape Sequences
+\n: New line
+\t: Horizontal tab
+\\: Backslash
+\": Double quote
+\': Single quote
+\r: Carriage return
+\a: Alert (bell)
+\0: Null character 
+
+Usage Examples
+Escaping Quotes: string s = "She said, \"Hello!\"";
+File Paths (Normal): string path = "C:\\Files\\data.txt";
+File Paths (Verbatim): string path = @"C:\Files\data.txt";
